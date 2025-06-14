@@ -13,6 +13,7 @@ export default function Footer() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
@@ -30,6 +31,7 @@ export default function Footer() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
           >
             <h4 className="text-lg font-semibold mb-6">ลิงก์ด่วน</h4>
             <ul className="space-y-3">
@@ -58,6 +60,7 @@ export default function Footer() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
           >
             <h4 className="text-lg font-semibold mb-6">บริการ</h4>
             <ul className="space-y-3">
@@ -86,6 +89,7 @@ export default function Footer() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
           >
             <h4 className="text-lg font-semibold mb-6">ติดต่อเรา</h4>
             <div className="space-y-4">
@@ -117,6 +121,7 @@ export default function Footer() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
           className="border-t border-blue-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
         >
           <p className="text-blue-200 text-sm">

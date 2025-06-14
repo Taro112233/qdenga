@@ -6,7 +6,11 @@ import { Shield, Users, CheckCircle, Globe } from "lucide-react";
 
 function useCounter(end: number, duration = 2000) {
   const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  
   useEffect(() => {
+    if (!hasStarted) return;
+    
     let start: number | null = null;
     function step(timestamp: number) {
       if (!start) start = timestamp;
@@ -15,8 +19,9 @@ function useCounter(end: number, duration = 2000) {
       if (progress < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
-  }, [end, duration]);
-  return count;
+  }, [end, duration, hasStarted]);
+  
+  return { count, startCounter: () => setHasStarted(true) };
 }
 
 export default function StatsSection() {
@@ -37,6 +42,7 @@ export default function StatsSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-blue-900 mb-4">
@@ -49,13 +55,15 @@ export default function StatsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {stats.map((s, i) => {
-            const count = useCounter(s.number, 2000);
+            const { count, startCounter } = useCounter(s.number, 2000);
             return (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: i * 0.2 }}
+                viewport={{ once: true }}
+                onViewportEnter={startCounter}
                 className="text-center"
               >
                 <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mb-6 shadow-xl">

@@ -16,6 +16,7 @@ export default function ContactSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
           className="text-center mb-12"
         >
           <h2 className="text-4xl font-bold text-blue-900 mb-4">
@@ -32,6 +33,7 @@ export default function ContactSection() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
           >
             <Card className="p-8 border-0 shadow-xl bg-gradient-to-br from-blue-900 to-blue-800 text-white">
               <CardHeader>
@@ -66,6 +68,7 @@ export default function ContactSection() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
           >
             <Card className="p-8 border-0 shadow-xl">
               <CardContent className="text-center space-y-6">

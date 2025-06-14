@@ -33,6 +33,7 @@ export default function FAQSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
           className="text-center mb-12"
         >
           <h2 className="text-4xl font-bold text-blue-900 mb-4">
@@ -50,6 +51,7 @@ export default function FAQSection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1, duration: 0.6 }}
+                viewport={{ once: true }}
                 className="border border-blue-100 rounded-lg overflow-hidden"
               >
                 <button
