@@ -104,7 +104,6 @@ export default function HeroSection() {
             transition={{ duration: 2, repeat: Infinity }}
             className="cursor-pointer"
           >
-            <ChevronDown className="w-8 h-8 text-white" />
           </motion.div>
         </motion.div>
       </div>
