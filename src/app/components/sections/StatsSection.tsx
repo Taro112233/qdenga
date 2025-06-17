@@ -2,9 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { Shield, Users, CheckCircle, Globe } from "lucide-react";
+import { Shield, Users, Bed, Globe, ShieldPlus } from "lucide-react";
 
-function useCounter(end: number, duration = 2000) {
+function easeOutExpo(x: number): number {
+  return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+}
+
+function useCounter(end: number, duration = 2000, isContinuous = false) {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   
@@ -12,30 +16,54 @@ function useCounter(end: number, duration = 2000) {
     if (!hasStarted) return;
     
     let start: number | null = null;
+    let animationFrameId: number;
+    
     function step(timestamp: number) {
       if (!start) start = timestamp;
       const progress = Math.min((timestamp - start) / duration, 1);
-      setCount(Math.floor(progress * end));
-      if (progress < 1) requestAnimationFrame(step);
+      const easedProgress = easeOutExpo(progress);
+      const currentCount = Math.floor(easedProgress * end);
+      setCount(currentCount);
+      
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(step);
+      } else if (isContinuous) {
+        // Start continuous incrementing after reaching the target
+        let lastTimestamp = timestamp;
+        function continuousStep(timestamp: number) {
+          const elapsed = timestamp - lastTimestamp;
+          if (elapsed > 100) { // Update every 100ms
+            setCount(prev => prev + Math.floor(Math.random() * 10)); // Random increment between 0-9
+            lastTimestamp = timestamp;
+          }
+          animationFrameId = requestAnimationFrame(continuousStep);
+        }
+        animationFrameId = requestAnimationFrame(continuousStep);
+      }
     }
-    requestAnimationFrame(step);
-  }, [end, duration, hasStarted]);
+    
+    animationFrameId = requestAnimationFrame(step);
+    
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [end, duration, hasStarted, isContinuous]);
   
   return { count, startCounter: () => setHasStarted(true) };
 }
 
 export default function StatsSection() {
   const stats = [
-    { icon: Shield, number: 80, suffix: "%", label: "ประสิทธิภาพ" },
-    { icon: Users, number: 28000, suffix: "+", label: "ผู้ทดสอบ" },
-    { icon: CheckCircle, number: 95, suffix: "%", label: "ความปลอดภัย" },
-    { icon: Globe, number: 13, suffix: "+", label: "ประเทศรับรอง" },
+    { icon: Shield, number: 80.2, suffix: "%", label: "ป้องกันการติดไข้เลือดออกทุกสายพันธุ์" },
+    { icon: ShieldPlus, number: 85.9, suffix: "%", label: "ป้องกันไข้เลือดออกแบบ DHF" },
+    { icon: Bed, number: 90.4, suffix: "%", label: "ลดการนอนโรงพยาบาลจากไข้เลือดออก" },
+    { icon: Globe, number: 13999900, suffix: "", label: "จำนวนการฉีดวัคซีนทั่วโลก" },
   ];
 
   return (
     <section
       id="stats"
-      className="py-20 bg-gradient-to-r from-blue-50 to-indigo-50"
+      className="py-20 bg-gradient-to-r from-red-50 to-rose-50"
     >
       <div className="container mx-auto px-6">
         <motion.div
@@ -45,17 +73,17 @@ export default function StatsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-blue-900 mb-4">
+          <h2 className="text-4xl font-bold text-red-900 mb-4">
             ประสิทธิภาพที่พิสูจน์แล้ว
           </h2>
           <p className="text-xl text-gray-600">
-            ข้อมูลจากการทดสอบทางคลินิกที่เข้มงวด
+            ข้อมูลจากการทดสอบทางคลินิก
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {stats.map((s, i) => {
-            const { count, startCounter } = useCounter(s.number, 2000);
+            const { count, startCounter } = useCounter(s.number, 2000, i === 3); // Only enable continuous for the last stat
             return (
               <motion.div
                 key={i}

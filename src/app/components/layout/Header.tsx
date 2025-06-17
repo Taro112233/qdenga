@@ -17,17 +17,17 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-blue-100 z-50">
+    <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-red-100 z-50">
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center space-x-3"
         >
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
+          <div className="w-10 h-10 bg-gradient-to-br from-red-600 to-red-800 rounded-lg flex items-center justify-center">
             <Shield className="w-6 h-6 text-white" />
           </div>
-          <span className="text-2xl font-bold text-blue-900">Qdenga</span>
+          <span className="text-2xl font-bold text-red-900">Qdenga</span>
         </motion.div>
 
         <div className="hidden md:flex space-x-8">
@@ -35,7 +35,7 @@ export default function Header() {
             <motion.a
               key={item.href}
               href={item.href}
-              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+              className="text-gray-700 hover:text-red-600 transition-colors font-medium"
               whileHover={{ y: -2 }}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -50,7 +50,7 @@ export default function Header() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
         >
-          <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white">
+          <Button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white">
             จองคิวเลย
           </Button>
         </motion.div>

@@ -14,7 +14,7 @@ export default function SafetySection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl font-bold text-blue-900 mb-4">
+          <h2 className="text-4xl font-bold text-red-900 mb-4">
             ความปลอดภัยและผลข้างเคียง
           </h2>
           <p className="text-lg text-gray-700">

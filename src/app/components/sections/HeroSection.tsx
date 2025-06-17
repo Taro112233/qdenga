@@ -10,9 +10,9 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700" />
+      <div className="absolute inset-0 bg-gradient-to-br from-red-50 via-white to-red-50" />
       <motion.div
         className="absolute inset-0 opacity-20"
         initial={{ opacity: 0 }}
@@ -20,23 +20,23 @@ export default function HeroSection() {
         transition={{ duration: 1 }}
       >
         {/* background blobs */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400 rounded-full filter blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-400 rounded-full filter blur-3xl" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-red-200 rounded-full filter blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-100 rounded-full filter blur-3xl" />
       </motion.div>
 
-      <div className="relative z-10 container mx-auto px-6 text-center text-white">
+      <div className="relative z-10 container mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <Badge className="mb-6 bg-blue-500/20 text-blue-100 border-blue-400">
+          <Badge className="mb-6 bg-red-100 text-red-900 border-red-200">
             WHO รับรอง • ปลอดภัย • มีประสิทธิภาพ
           </Badge>
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-red-900">
             วัคซีน Qdenga
           </h1>
-          <p className="text-xl md:text-2xl mb-4 text-blue-100 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl mb-4 text-gray-700 max-w-3xl mx-auto leading-relaxed">
             ป้องกันไข้เด็งกี่ได้ทุกสายพันธุ์
           </p>
         </motion.div>
@@ -49,14 +49,14 @@ export default function HeroSection() {
         >
           <Button
             size="lg"
-            className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-full shadow-2xl transform hover:scale-105 transition"
+            className="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-4 rounded-full shadow-2xl transform hover:scale-105 transition"
           >
             <Heart className="w-5 h-5 mr-2" /> จองวัคซีนเลย
           </Button>
           <Button
             variant="outline"
             size="lg"
-            className="border-2 border-white text-black px-8 py-4 rounded-full backdrop-blur-sm"
+            className="border-2 border-red-600 text-red-600 px-8 py-4 rounded-full hover:bg-red-50"
           >
             <Phone className="w-5 h-5 mr-2" /> สอบถามข้อมูล
           </Button>
@@ -75,7 +75,7 @@ export default function HeroSection() {
               desc: "DENV-1,2,3,4",
             },
             { icon: Award, title: "WHO รับรอง", desc: "มาตรฐานสากล" },
-            { icon: Users, title: "เหมาะทุกคน", desc: "4-60 ปี" },
+            { icon: Users, title: "เหมาะทุกวัย", desc: "ตั้งแต่ 4 ปีขึ้นไป" },
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -84,11 +84,11 @@ export default function HeroSection() {
               transition={{ delay: 1 + i * 0.2, duration: 0.6 }}
               className="text-center"
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 rounded-full mb-4">
-                <item.icon className="w-8 h-8 text-white" />
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
+                <item.icon className="w-8 h-8 text-red-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-              <p className="text-blue-200">{item.desc}</p>
+              <h3 className="text-xl font-semibold mb-2 text-red-900">{item.title}</h3>
+              <p className="text-gray-600">{item.desc}</p>
             </motion.div>
           ))}
         </motion.div>

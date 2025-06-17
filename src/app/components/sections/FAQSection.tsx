@@ -6,20 +6,20 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    question: "วัคซีน Qdenga ปลอดภัยหรือไม่?",
-    answer: "ได้รับการรับรอง WHO/FDA ผ่านการทดสอบทางคลินิก มีผลข้างเคียงน้อย",
+    question: "สามารถฉีดในผู้ที่เคยได้รับวัคซีนไข้เลือดออกตัวเก่ามาแล้วได้หรือไม่?",
+    answer: "ปัจจุบันยังไม่มีข้อมูลเรื่องความปลอดภัย แต่ผู้เชี่ยวชาญแนะนำว่าสามารถฉีดได้โดยเว้นระยะห่าง 1 เดือนหลังจากฉีดตัวเก่า",
   },
   {
-    question: "ใครควรฉีด?",
-    answer: "อายุ 4-60 ปี ที่อาศัยหรือเดินทางในพื้นที่เสี่ยง",
+    question: "สามารถฉีดพร้อมกับวัคซีนตัวอื่นได้หรือไม่?",
+    answer: "สามารถฉีดพร้อมกันได้ในวันเดียวกัน",
   },
   {
-    question: "ฉีดกี่เข็ม?",
-    answer: "2 เข็ม ห่างกัน 3 เดือน เพื่อความคุ้มครองสูงสุด",
+    question: "ฉีดเข็มที่ 2 ก่อนวันนัดได้หรือไม่?",
+    answer: "ไม่แนะนำให้ฉีดก่อนวันนัด เพื่อให้วัคซีนออกฤทธิ์ได้เต็มประสิทธิภาพ",
   },
   {
-    question: "ราคาต่อเข็ม?",
-    answer: "3,500 บาท (แพ็กเกจ 2 เข็ม 6,500 บาท รวมบริการ)",
+    question: "ฉีดเข็มที่ 2 เลยกำหนดนัดได้หรือไม่?",
+    answer: "สามารถฉีดหลังวันนัดเข็มที่ 2 ได้ แต่ไม่ควรเกิน 1 ปี",
   },
 ];
 
@@ -36,7 +36,7 @@ export default function FAQSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl font-bold text-blue-900 mb-4">
+          <h2 className="text-4xl font-bold text-red-900 mb-4">
             คำถามที่พบบ่อย
           </h2>
           <p className="text-lg text-gray-600">ข้อมูลสำคัญเกี่ยวกับ Qdenga</p>
@@ -52,20 +52,20 @@ export default function FAQSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1, duration: 0.6 }}
                 viewport={{ once: true }}
-                className="border border-blue-100 rounded-lg overflow-hidden"
+                className="border border-red-100 rounded-lg overflow-hidden"
               >
                 <button
-                  className="w-full p-6 text-left bg-white hover:bg-blue-50 flex justify-between items-center"
+                  className="w-full p-6 text-left bg-white hover:bg-red-50 flex justify-between items-center"
                   onClick={() => setOpenIndex(isOpen ? null : i)}
                 >
-                  <span className="font-semibold text-blue-900">
+                  <span className="font-semibold text-red-900">
                     {faq.question}
                   </span>
                   <motion.div
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <ChevronDown className="w-5 h-5 text-blue-600" />
+                    <ChevronDown className="w-5 h-5 text-red-600" />
                   </motion.div>
                 </button>
                 <motion.div

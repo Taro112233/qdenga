@@ -20,34 +20,34 @@ export default function FeaturesSection() {
     },
     {
       icon: Users,
-      title: "เหมาะทุกกลุ่มเสี่ยง",
-      desc: "4-60 ปี, ติดเชื้อหรือไม่เคยติดก็ฉีดได้",
+      title: "ฉีดได้ทุกวัย",
+      desc: "ฉีดได้ในผู้ที่มีอายุตั้งแต่ 4 ปีขึ้นไป",
       gradient: "from-purple-500 to-purple-600",
     },
     {
-      icon: Heart,
-      title: "ลดความรุนแรง",
-      desc: "ช่วยลดโอกาสป่วยหนักและเข้า รพ.",
-      gradient: "from-red-500 to-red-600",
-    },
-    {
       icon: Zap,
-      title: "เริ่มให้ผลเร็ว",
-      desc: "ภูมิคุ้มกันภายใน 30 วัน",
+      title: "ฉีดเพียง 2 เข็ม",
+      desc: "ฉีดเพียง 2 เข็ม ห่างกัน 3 เดือน",
       gradient: "from-orange-500 to-orange-600",
     },
     {
       icon: Activity,
-      title: "ผลข้างเคียงน้อย",
-      desc: "ปวดบริเวณฉีดเล็กน้อย ไม่มีอาการร้ายแรง",
+      title: "แนะนำให้ฉีดในคนที่มีโรคร่วม",
+      desc: "ช่วยลดความเสี่ยงจากไข้เลือดออก",
       gradient: "from-teal-500 to-teal-600",
+    },
+    {
+      icon: Heart,
+      title: "ผลข้างเคียงน้อย",
+      desc: "ปวดบริเวณฉีดเล็กน้อย มีไข้เล็กน้อย",
+      gradient: "from-red-500 to-red-600 ",
     },
   ];
 
   return (
     <section
       id="features"
-      className="py-20 bg-gradient-to-r from-blue-50 to-indigo-50"
+      className="py-20 bg-gradient-to-r from-red-50 to-rose-50"
     >
       <div className="container mx-auto px-6">
         <motion.div
@@ -57,7 +57,7 @@ export default function FeaturesSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-blue-900 mb-4">
+          <h2 className="text-4xl font-bold text-red-900 mb-4">
             ทำไมต้องเลือก Qdenga?
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
