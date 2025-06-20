@@ -61,7 +61,7 @@ export default function FeaturesSection() {
             ทำไมต้องเลือก Qdenga?
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            วัคซีนไข้เด็งกี่ที่ครอบคลุมและปลอดภัยที่สุด
+            วัคซีนไข้เลือดออกที่ครอบคลุมและปลอดภัยที่สุด
           </p>
         </motion.div>
 

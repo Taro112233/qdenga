@@ -22,7 +22,7 @@ export default function Footer() {
               <span className="text-2xl font-bold text-gray-800">Qdenga</span>
             </div>
             <p className="text-gray-600 leading-relaxed">
-              วัคซีนป้องกันไข้เด็งกี่ที่ปลอดภัยและมีประสิทธิภาพสูงเพื่อสุขภาพที่ดีของคุณและครอบครัว
+              วัคซีนป้องกันไข้เลือดออกที่ปลอดภัยและมีประสิทธิภาพสูงเพื่อสุขภาพที่ดีของคุณและครอบครัว
             </p>
           </motion.div>
 
@@ -65,7 +65,7 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-6 text-gray-800">บริการ</h4>
             <ul className="space-y-3">
               {[
-                "วัคซีนป้องกันไข้เด็งกี่",
+                "วัคซีนป้องกันไข้เลือดออก",
                 "ปรึกษาแพทย์",
                 "ตรวจสุขภาพก่อนฉีด",
                 "ติดตามผลภายหลัง",

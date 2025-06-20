@@ -20,7 +20,7 @@ export default function ContactSection() {
           className="text-center mb-12"
         >
           <h2 className="text-4xl font-bold text-red-900 mb-4">
-            คุณควรได้รับวัคซีนไข้เด็งกี่หรือไม่?
+            คุณควรได้รับวัคซีนไข้เลือดออกหรือไม่?
           </h2>
           <p className="text-lg text-gray-700">
             ทำแบบประเมินเพื่อตรวจสอบความเสี่ยงและความเหมาะสมในการรับวัคซีน
@@ -79,7 +79,7 @@ export default function ContactSection() {
                   แบบประเมินความเสี่ยง
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  ใช้เวลาเพียง 2 นาที เพื่อประเมินความเสี่ยงและความเหมาะสมในการรับวัคซีนไข้เด็งกี่
+                  ใช้เวลาเพียง 2 นาที เพื่อประเมินความเสี่ยงและความเหมาะสมในการรับวัคซีนไข้เลือดออก
                 </p>
                 <div className="space-y-4">
                   <a href="https://denguechecker.vercel.app/" target="_blank" rel="noopener noreferrer">

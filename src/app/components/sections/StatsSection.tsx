@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Shield, Users, Bed, Globe, ShieldPlus } from "lucide-react";
+import Confetti from "react-confetti";
+import { useWindowSize } from "react-use";
 
 function easeOutExpo(x: number): number {
   return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
@@ -60,11 +62,42 @@ export default function StatsSection() {
     { icon: Globe, number: 13999900, suffix: "", label: "จำนวนการฉีดวัคซีนทั่วโลก" },
   ];
 
+  // Confetti state
+  const [showConfetti, setShowConfetti] = useState(false);
+  const { width, height } = useWindowSize();
+  // State สำหรับเก็บ count ของ stat สุดท้าย
+  const [lastStatCount, setLastStatCount] = useState(0);
+
+  // Trigger confetti เมื่อ count ถึง 14,000,000 ขึ้นไป และยังไม่เคยแสดง
+  useEffect(() => {
+    if (lastStatCount >= 13999900 && !showConfetti) {
+      setShowConfetti(true);
+    }
+  }, [lastStatCount, showConfetti]);
+
   return (
     <section
       id="stats"
       className="py-20 bg-gradient-to-r from-red-50 to-rose-50"
     >
+      {/* Confetti effect: render fixed on top-level */}
+      {showConfetti && (
+        <Confetti
+          width={width}
+          height={height}
+          numberOfPieces={400}
+          recycle={false}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            pointerEvents: "none",
+            zIndex: 50,
+          }}
+        />
+      )}
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -84,6 +117,14 @@ export default function StatsSection() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {stats.map((s, i) => {
             const { count, startCounter } = useCounter(s.number, 2000, i === 3); // Only enable continuous for the last stat
+
+            // ถ้าเป็น stat สุดท้าย ให้ sync count กับ state หลัก
+            useEffect(() => {
+              if (i === 3) {
+                setLastStatCount(count);
+              }
+            }, [count, i]);
+
             return (
               <motion.div
                 key={i}
