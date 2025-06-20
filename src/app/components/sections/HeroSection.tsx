@@ -5,15 +5,16 @@ import { Badge } from "@/components/ui/badge";
 import { Shield, Award, Users } from "lucide-react";
 import { useState, useEffect } from "react";
 
+const WORDS = ["Qdenga", "ฆ่า Dengue"]; // Move outside component to avoid recreating
+
 export default function HeroSection() {
-  const words = ["Qdenga", "ฆ่า Dengue"];
   const [wordIndex, setWordIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [charIndex, setCharIndex] = useState(0);
 
   useEffect(() => {
-    const currentWord = words[wordIndex];
+    const currentWord = WORDS[wordIndex];
     let timeout: NodeJS.Timeout;
 
     if (isDeleting) {
@@ -25,7 +26,7 @@ export default function HeroSection() {
       } else {
         timeout = setTimeout(() => {
           setIsDeleting(false);
-          setWordIndex((prev) => (prev + 1) % words.length);
+          setWordIndex((prev) => (prev + 1) % WORDS.length);
         }, 500); // 500 ms: หน่วงเวลาก่อนเริ่มพิมพ์คำถัดไปหลังลบหมด
       }
     } else {
@@ -41,7 +42,7 @@ export default function HeroSection() {
       }
     }
     return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, wordIndex]);
+  }, [charIndex, isDeleting, wordIndex]); // No need to include WORDS now
 
   return (
     <section
