@@ -5,8 +5,46 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Shield, Award, Users, ChevronDown, Heart, Phone } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function HeroSection() {
+  const words = ["Qdenga", "ฆ่า Dengue"];
+  const [wordIndex, setWordIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [charIndex, setCharIndex] = useState(0);
+
+  useEffect(() => {
+    const currentWord = words[wordIndex];
+    let timeout: NodeJS.Timeout;
+
+    if (isDeleting) {
+      if (charIndex > 0) {
+        timeout = setTimeout(() => {
+          setDisplayText(currentWord.substring(0, charIndex - 1));
+          setCharIndex(charIndex - 1);
+        }, 60); // 60 ms: ความเร็วในการลบทีละตัวอักษร
+      } else {
+        timeout = setTimeout(() => {
+          setIsDeleting(false);
+          setWordIndex((prev) => (prev + 1) % words.length);
+        }, 500); // 500 ms: หน่วงเวลาก่อนเริ่มพิมพ์คำถัดไปหลังลบหมด
+      }
+    } else {
+      if (charIndex < currentWord.length) {
+        timeout = setTimeout(() => {
+          setDisplayText(currentWord.substring(0, charIndex + 1));
+          setCharIndex(charIndex + 1);
+        }, 120); // 120 ms: ความเร็วในการพิมพ์ทีละตัวอักษร
+      } else {
+        timeout = setTimeout(() => {
+          setIsDeleting(true);
+        }, 2400); // 2400 ms: หน่วงเวลาก่อนเริ่มลบหลังพิมพ์ครบทั้งคำ
+      }
+    }
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, wordIndex]);
+
   return (
     <section
       id="hero"
@@ -34,10 +72,11 @@ export default function HeroSection() {
             WHO รับรอง • ปลอดภัย • มีประสิทธิภาพ
           </Badge>
           <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-red-900">
-            วัคซีน Qdenga
+            {displayText}
+            <span className="border-r-2 border-red-900 animate-pulse ml-1">&nbsp;</span>
           </h1>
           <p className="text-xl md:text-2xl mb-4 text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            ป้องกันไข้เด็งกี่ได้ทุกสายพันธุ์
+            วัคซีนป้องกันไข้เลือดออกได้ทุกสายพันธุ์
           </p>
         </motion.div>
 
@@ -47,26 +86,13 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-4 rounded-full shadow-2xl transform hover:scale-105 transition"
-          >
-            <Heart className="w-5 h-5 mr-2" /> จองวัคซีนเลย
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="border-2 border-red-600 text-red-600 px-8 py-4 rounded-full hover:bg-red-50"
-          >
-            <Phone className="w-5 h-5 mr-2" /> สอบถามข้อมูล
-          </Button>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 1 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto"
         >
           {[
             {
