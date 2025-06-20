@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "motion/react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Shield, ChevronDown } from "lucide-react";
+import { Shield, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Header() {
   const navItems = [
@@ -50,8 +49,11 @@ export default function Header() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
         >
-          <Button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white">
-            จองคิวเลย
+          <Button asChild size="lg" className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold shadow-lg px-8 py-3 gap-2">
+            <Link href="https://denguechecker.vercel.app/">
+              <span>ทำแบบประเมินเลย</span>
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Link>
           </Button>
         </motion.div>
       </nav>

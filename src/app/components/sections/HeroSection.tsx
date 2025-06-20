@@ -1,10 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
-import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Shield, Award, Users, ChevronDown, Heart, Phone } from "lucide-react";
+import { Shield, Award, Users } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function HeroSection() {

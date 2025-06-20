@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { Shield, Users, Bed, Globe, ShieldPlus } from "lucide-react";
+import { Shield, Bed, Globe, ShieldPlus } from "lucide-react";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
 
@@ -62,18 +62,24 @@ export default function StatsSection() {
     { icon: Globe, number: 13999900, suffix: "", label: "จำนวนการฉีดวัคซีนทั่วโลก" },
   ];
 
+  // Call all hooks at the top level
+  const counter1 = useCounter(stats[0].number, 2000, false);
+  const counter2 = useCounter(stats[1].number, 2000, false);
+  const counter3 = useCounter(stats[2].number, 2000, false);
+  const counter4 = useCounter(stats[3].number, 2000, true); // Only enable continuous for the last stat
+
+  const counters = [counter1, counter2, counter3, counter4];
+
   // Confetti state
   const [showConfetti, setShowConfetti] = useState(false);
   const { width, height } = useWindowSize();
-  // State สำหรับเก็บ count ของ stat สุดท้าย
-  const [lastStatCount, setLastStatCount] = useState(0);
 
   // Trigger confetti เมื่อ count ถึง 14,000,000 ขึ้นไป และยังไม่เคยแสดง
   useEffect(() => {
-    if (lastStatCount >= 13999900 && !showConfetti) {
+    if (counter4.count >= 13999900 && !showConfetti) {
       setShowConfetti(true);
     }
-  }, [lastStatCount, showConfetti]);
+  }, [counter4.count, showConfetti]);
 
   return (
     <section
@@ -116,14 +122,7 @@ export default function StatsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {stats.map((s, i) => {
-            const { count, startCounter } = useCounter(s.number, 2000, i === 3); // Only enable continuous for the last stat
-
-            // ถ้าเป็น stat สุดท้าย ให้ sync count กับ state หลัก
-            useEffect(() => {
-              if (i === 3) {
-                setLastStatCount(count);
-              }
-            }, [count, i]);
+            const { count, startCounter } = counters[i];
 
             return (
               <motion.div

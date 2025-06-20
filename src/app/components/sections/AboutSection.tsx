@@ -16,16 +16,16 @@ export default function AboutSection() {
         >
           <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8">
             <div className="text-center mb-8">
-              <h2 className="text-6xl font-bold mb-3 text-red-900">
+              <h2 className="text-5xl font-bold mb-3 text-red-900">
                 8 ใน 10
               </h2>
-              <h2 className="text-4xl font-bold mb-6 ">
+              <h2 className="text-3xl font-bold mb-6 ">
                 ของผู้ป่วยเสียชีวิตจากไข้เลือดออก เป็นผู้ใหญ่และผู้สูงอายุ
               </h2>
             </div>
 
             <div className="bg-red-50 rounded-xl p-4 mb-6">
-              <p className="text-xl font-semibold text-red-700">
+              <p className="text-xl font-medium text-red-700">
                 สาเหตุ อันดับ 1 คือ โรคประจำตัว
               </p>
             </div>

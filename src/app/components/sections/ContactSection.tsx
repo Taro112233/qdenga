@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Heart, Phone, Mail, MapPin, CheckCircle, Shield, ClipboardCheck } from "lucide-react";
+import { Phone, Mail, MapPin, CheckCircle, Shield, ClipboardCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function ContactSection() {
@@ -28,40 +28,6 @@ export default function ContactSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <Card className="p-8 border-0 shadow-xl bg-gradient-to-br from-red-900 to-red-800 text-white">
-              <CardHeader>
-                <CardTitle className="text-2xl mb-6">ข้อมูลเพิ่มเติม</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {[
-                  { icon: Phone, label: "โทรศัพท์", value: "02-123-4567" },
-                  { icon: Mail, label: "อีเมล", value: "info@qdenga.th" },
-                  {
-                    icon: MapPin,
-                    label: "สถานที่",
-                    value: "โรงพยาบาลทั่วประเทศ",
-                  },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center">
-                      <item.icon className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <p className="font-semibold">{item.label}</p>
-                      <p className="text-red-100">{item.value}</p>
-                    </div>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-          </motion.div>
 
           {/* Assessment Card */}
           <motion.div
@@ -79,7 +45,7 @@ export default function ContactSection() {
                   แบบประเมินความเสี่ยง
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  ใช้เวลาเพียง 2 นาที เพื่อประเมินความเสี่ยงและความเหมาะสมในการรับวัคซีนไข้เลือดออก
+                  ใช้เวลาเพียง 1 นาที เพื่อประเมินความเสี่ยงและความเหมาะสมในการรับวัคซีนไข้เลือดออก
                 </p>
                 <div className="space-y-4">
                   <a href="https://denguechecker.vercel.app/" target="_blank" rel="noopener noreferrer">
@@ -120,6 +86,42 @@ export default function ContactSection() {
               </CardContent>
             </Card>
           </motion.div>
+
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <Card className="p-8 border-0 shadow-xl bg-gradient-to-br from-red-900 to-red-800 text-white">
+              <CardHeader>
+                <CardTitle className="text-2xl mb-6">ข้อมูลเพิ่มเติม</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {[
+                  { icon: Phone, label: "โทรศัพท์", value: "02-123-4567" },
+                  { icon: Mail, label: "อีเมล", value: "info@qdenga.th" },
+                  {
+                    icon: MapPin,
+                    label: "สถานที่",
+                    value: "โรงพยาบาลทั่วประเทศ",
+                  },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center">
+                      <item.icon className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <p className="font-semibold">{item.label}</p>
+                      <p className="text-red-100">{item.value}</p>
+                    </div>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          </motion.div>
+
         </div>
       </div>
     </section>
